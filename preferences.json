@@ -12,11 +12,18 @@
     "restart": true
   },
   {
+    "type": "checkbox",
+    "label": "Enable *Custom Menu Opacity*.",
+    "property": "arc-menu-opacity",
+    "defaultValue": false
+  },
+  {
     "type": "string",
-    "label": "Enable *better blur* for context menu (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
-    "property": "arc-menu-blur",
-    "defaultValue": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))",
-    "placeholder": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))"
+    "label": "Edit *opacity* for context menu [Enable above checkbox to make it work] (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; ensure your OS has proper blur support~).",
+    "property": "arc-menu-opacity-value",
+    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
+    "placeholder": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
+    "restart": false
   },
   {
     "type": "checkbox",
@@ -32,7 +39,7 @@
   },
   {
     "type": "separator",
-    "label": "**Arc UI / Interface**",
+    "label": "**Arc UI**",
     "margin": "30px 0 30px 0",
     "size": "18px"
   },
@@ -48,7 +55,7 @@
     "property": "arc-website-tint",
     "defaultValue": "light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "label": "Custom *Website Tint* for browser (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; works if no Workspace Theme color is selected, only on transparent websites~)."
+    "label": "Custom *Webview Tint* for browser (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.1), rgba(0,0,0,0.1))`]; works if no Workspace Theme color is selected, only on transparent websites~)."
   },
   {
     "type": "string",
@@ -119,15 +126,68 @@
     "label": "Enable *macOS-style* window buttons."
   },
   {
+    "property": "mod.forkedtidypopup.disabletidypopup",
+    "label": "Disable **Tidy Menu and Popup** (~None of the prefs for Menus and Popups below in this Arc UI category will work~).",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.removedividers",
+    "label": "Remove *divider lines* in Menus",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.disablecustomhovercolor",
+    "label": "Disable *custom hover* color on menus and popups (~Any hover color pref below will be ignored~).",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.disablezenprimarycolor",
+    "label": "Disable use of *primary color* chosen in Theme Menu to use Custom Hover Colors below.",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.hovercolor.light",
+    "label": "Button color when hovered (~Light mode~)",
+    "type": "string",
+    "placeholder": "rgba(243,202,176,1)"
+  },
+  {
+    "property": "mod.forkedtidypopup.hovercolor.dark",
+    "label": "Button color when hovered (~Dark mode~)",
+    "type": "string",
+    "placeholder": "rgba(87,65,50,1)"
+  },
+  {
+    "property": "mod.forkedtidypopup.disabletidyextension",
+    "label": "Disable *Tidy Extension Menu*",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
+    "property": "mod.forkedtidypopup.disablecenterbookmarkbar",
+    "label": "Disable *Center Bookmark Bar*",
+    "type": "checkbox",
+    "defaultValue": false
+  },
+  {
     "type": "checkbox",
     "property": "arc-disable-floating-statusbar",
-    "label": "Disable Status Bar (URL info that appears on bottom left of web-view when you hover on a link)."
+    "label": "Disable Status Bar (~URL info that appears on bottom left of web-view when you hover on a link~)."
   },
   {
     "type": "separator",
     "label": "**URL Bar Options**",
     "margin": "30px 0 30px 0",
     "size": "18px"
+  },
+  {
+    "type": "checkbox",
+    "property": "browser.taskbarTabs.enabled",
+    "label": "Enable button in URL Bar to *install* any webpage as **Web App**."
   },
   {
     "type": "checkbox",
@@ -141,39 +201,30 @@
   },
   {
     "type": "checkbox",
+    "label": "*Left*-align URL instead of default *Center*-alignment.",
+    "property": "arc-url-left-align"
+  },
+  {
+    "type": "checkbox",
     "property": "arc.urlbar.background",
     "label": "Disable *background zoom blur* when URL bar popup.",
     "defaultValue": true
   },
   {
-    "property": "arc.urlbar.hide_results",
-    "label": "Hide *search results* when opening URL Bar.",
-    "type": "dropdown",
-    "defaultValue": 0,
-    "options": [
-      {
-        "label": "Hide all",
-        "value": 0
-      },
-      {
-        "label": "Hide only top sites",
-        "value": 1
-      },
-      {
-        "label": "Hide only non-pinned top sites",
-        "value": 2
-      }
-    ]
+    "property": "arc-urlbar-hide-results",
+    "label": "*Hide* Search Suggestions on pressing Ctrl+T.",
+    "type": "checkbox"
   },
   {
     "type": "dropdown",
     "value": "number",
     "property": "arc-urlbar-animation",
     "label": "*Animation* for URL Bar when focused (~Won't work if Arcline-like URL Bar is enabled~).",
-    "defaultValue": 1,
+    "defaultValue": 0,
     "options": [
+      { "label": "Disable", "value": 0 },
       { "label": "Stretch", "value": 1 },
-      { "label": "Fade in", "value": 2 }
+      { "label": "Fade-in", "value": 2 }
     ]
   },
   {
@@ -223,13 +274,6 @@
   },
   {
     "type": "string",
-    "property": "arc-other-sidebar-bg",
-    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
-    "placeholder": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
-    "label": "Other Sidebar *opacity* (~Bookmarks, History, Synced Tabs, and AI Chatbot Sidebar; enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))`]~)"
-  },
-  {
-    "type": "string",
     "property": "arc-compact-sidebar-bg",
     "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
@@ -257,13 +301,6 @@
     "placeholder": 0.75
   },
   {
-    "type": "string",
-    "property": "arc-compact-sidebar-width",
-    "defaultValue": "22em",
-    "placeholder": "22em",
-    "label": "*Custom* Compact Sidebar size (~enter value between 15em and 30em as per your preference~)."
-  },
-  {
     "type": "separator",
     "label": "**Tabs &  Tab Animations**",
     "margin": "30px 0 30px 0",
@@ -276,18 +313,30 @@
   },
   {
     "type": "checkbox",
+    "label": "Enable *Unloaded* Tabs to be *faded*.",
+    "property": "browser.tabs.fadeOutUnloadedTabs",
+    "defaultValue": true
+  },
+  {
+    "type": "checkbox",
+    "label": "Grayscale Unloaded Tabs (~won't work unless above pref is enabled~).",
+    "property": "arc-grayscale-unloaded-tabs",
+    "defaultValue": false
+  },
+  {
+    "type": "checkbox",
     "property": "arc-disable-tab-hover-animations",
     "label": "Disable *animations* for hover and click on tabs."
   },
   {
     "type": "checkbox",
-    "property": "arc.tab.defaultValue-audio-indicator",
-    "label": "Disable *audio playing indicator* in tab playing media."
+    "property": "arc-disable-vertical-split-tabs",
+    "label": "Disable *vertically*-aligned split tabs to get Zen's default *horizontally*-aligned ones."
   },
   {
     "type": "checkbox",
-    "property": "browser.tabs.fadeOutUnloadedTabs",
-    "label": "Fade *unloaded tabs* in the background."
+    "property": "arc.tab.defaultValue-audio-indicator",
+    "label": "Disable *audio playing indicator* in tab playing media."
   },
   {
     "type": "checkbox",
@@ -316,7 +365,8 @@
     "type": "checkbox",
     "value": "boolean",
     "label": "Enable *Background* for Folders.",
-    "property": "arc-folder-background"
+    "property": "arc-folder-bg",
+    "defaultValue": true
   },
   {
     "type": "string",
@@ -348,14 +398,14 @@
     "defaultValue": 2,
     "options": [
       { "label": "No animation", "value": 0 },
-      { "label": "Bounce", "value": 1 },
-      { "label": "Bouncier", "value": 2 },
-      { "label": "More bounce", "value": 3 },
+      { "label": "Default Zen Animation", "value": 1 },
+      { "label": "Smooth Bounce", "value": 2 },
+      { "label": "Bounce Up", "value": 3 },
       {
         "label": "Smooth crossfade (scroll in split-mode might not work)",
         "value": 4
       },
-      { "label": "Zoom out effect", "value": 5 }
+      { "label": "Zoom out", "value": 5 }
     ]
   },
   {
@@ -406,7 +456,8 @@
     "options": [
       { "label": "No background", "value": 0 },
       { "label": "No animation", "value": 1 },
-      { "label": "Capsule background", "value": 2 }
+      { "label": "Capsule background", "value": 2 },
+      { "label": "Disable", "value": 3}
     ]
   },
   {
@@ -424,43 +475,43 @@
     "type": "string",
     "property": "arc-findbar-vertical",
     "label": "Custom *vertical position* for FindBar (~enter value between 0px and whatever under 1000px that feels right for you~).",
-    "defaultValue": "50px",
-    "placeholder": "50px"
+    "defaultValue": "70px",
+    "placeholder": "70px"
   },
   {
     "type": "string",
     "property": "arc-findbar-horizontal",
     "label": "Custom *horizontal position* for FindBar (~enter value between 0px and whatever under 50px that feels right for you~).",
-    "defaultValue": "25px",
-    "placeholder": "25px"
+    "defaultValue": "50px",
+    "placeholder": "50px"
   },
   {
     "type": "string",
-    "property": "arc-findbar-length",
-    "label": "Custom *length* for FindBar (~enter value between 750px and 1000px~).",
-    "defaultValue": "850px",
-    "placeholder": "850px"
+    "property": "arc-findbar-width",
+    "label": "Custom *width* for FindBar (~enter value between 900px and 1000px~).",
+    "defaultValue": "960px",
+    "placeholder": "960px"
   },
   {
     "type": "string",
     "property": "arc-findbar-breadth",
-    "label": "Custom *breadth* for FindBar (~enter value between 20px and 200px~).",
+    "label": "Custom *breadth/height* for FindBar (~enter value between 20px and 200px~).",
     "defaultValue": "50px",
     "placeholder": "50px"
   },
   {
     "type": "string",
     "property": "arc-findbar-bg",
-    "label": "Custom *background* for FindBar (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))`]~).",
-    "defaultValue": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))",
+    "label": "Custom *background* for FindBar (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))`]~).",
+    "defaultValue": "light-dark(rgba(255,255,255,0.5), rgba(0,0,0,0.5))",
     "placeholder": "light-dark(rgba(255,255,255,0.25), rgba(0,0,0,0.25))"
   },
   {
     "type": "string",
     "property": "arc-findbar-blur",
     "label": "Custom *blur* for FindBar (~enter value between 0 and 50px~).",
-    "defaultValue": "25px",
-    "placeholder": "25px"
+    "defaultValue": "10px",
+    "placeholder": "10px"
   },
   {
     "type": "string",
@@ -478,11 +529,6 @@
   },
   {
     "type": "checkbox",
-    "property": "arc.media-controls-toolbar-bottom",
-    "label": "Enable *Media Controls Toolbar* to go bottom."
-  },
-  {
-    "type": "checkbox",
     "property": "arc.pip.disabled",
     "label": "Disable *Arc stylings* on PiP."
   },
@@ -494,20 +540,33 @@
   },
   {
     "type": "checkbox",
-    "property": "arc.transparency-media",
-    "label": "Disable *glassy look* from sidebar media miniplayer."
-  },
-  {
-    "type": "checkbox",
-    "property": "arc-disable-player-glow-effect",
-    "label": "Disable *glow effects* on sidebar media miniplayer."
+    "property": "arc.media-controls-toolbar-bottom",
+    "label": "Enable *Media Mini Player* to go at *bottom* of Sidebar."
   },
   {
     "type": "checkbox",
     "property": "arc-disable-media-player-styles",
-    "label": "Enable *default Zen* styling for sidebar media miniplayer."
+    "label": "Disable *Arc styling* for Sidebar Media Player."
   },
-
+  {
+    "type": "checkbox",
+    "property": "arc-disable-player-glow-effect",
+    "label": "Disable *Glow Effects* on Sidebar Media Player."
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-opacity",
+    "label": "*Background Color* for Sidebar Media Player. (~enter CSS color value in HEX or RGBA [for ex.: `light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))`]~)",
+    "defaultValue": "light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))",
+    "placeholder": "light-dark(rgba(255,255,255,0.2), rgba(0,0,0,0.2))"
+  },
+  {
+    "type": "string",
+    "property": "arc-mediaplayer-blur",
+    "label": "Blur Effects on Glow Animation Effects for Media Player (~Set between 20px to 30px~).",
+    "defaultValue": "20px",
+    "placeholder": "20px"
+  },
   {
     "type": "separator",
     "label": "**Performance &  Memory Management**",
@@ -538,7 +597,7 @@
   },
   {
     "type": "separator",
-    "label": "**Fonts &  Miscellaneous**",
+    "label": "**Fonts**",
     "margin": "30px 0 30px 0",
     "size": "18px"
   },
@@ -589,39 +648,45 @@
   },
   {
     "property": "arc.detaloadingbar.maincolor",
-    "label": "*Left color*",
+    "label": "*Left color* (~enter CSS color value in HEX or RGBA~)",
     "type": "string",
-    "defaultValue": "rgba(243,202,186,255)"
+    "defaultValue": "rgba(243,202,1)",
+    "placeholder": "rgba(243,202,186,1)"
   },
   {
     "property": "arc.detaloadingbar.middlecolor",
-    "label": "*Middle color*",
+    "label": "*Middle color* (~enter CSS color value in HEX or RGBA~)",
     "type": "string",
-    "defaultValue": "rgba(255,255,255,255)"
+    "defaultValue": "rgba(255,255,255,1)",
+    "placeholder": "rgba(255,255,255,1)"
   },
   {
     "property": "arc.detaloadingbar.rightcolor",
-    "label": "*Right color*",
+    "label": "*Right color* (~enter CSS color value in HEX or RGBA~)",
     "type": "string",
-    "defaultValue": "rgba(243,202,186,255)"
+    "defaultValue": "rgba(243,202,186,1)",
+    "placeholder": "rgba(243,202,186,1)"
   },
   {
     "property": "arc.detaloadingbar.thickness",
     "label": "*Thickness* of the loading bar (~enter value between 1px and 10px~).",
     "type": "string",
-    "defaultValue": "6px"
+    "defaultValue": "6px",
+    "placeholder": "6px"
   },
   {
     "property": "arc.detaloadingbar.minwidth",
     "label": "*Custom Minimum Width* (~enter value between 10px and 30px~).",
     "type": "string",
-    "defaultValue": "20px"
+    "defaultValue": "20px",
+    "placeholder": "20px"
   },
   {
     "property": "arc.detaloadingbar.maxwidth",
     "label": "*Custom Maximum Width* (~enter value between 90px and 180px~).",
     "type": "string",
-    "defaultValue": "120px"
+    "defaultValue": "120px",
+    "placeholder": "120px"
   },
   {
     "property": "arc.detaloadingbar.spacerwidth",

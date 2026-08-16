@@ -11,50 +11,32 @@
   display: none !important;
 }
 
-/* Center text in URL bar */
-#urlbar .urlbar-input,
-.urlbar-input-container {
-  text-align: center !important;
-  position: relative;
-}
-
-/* New Animations */
-
-/* Basic performance optimization */
-#urlbar,
-.urlbar-background,
-#urlbar-input-container {
-  /* will-change: transform, opacity; */
-  transform: translateZ(0);
-  transition: all 0.2s ease;
+@media not -moz-pref("arc-url-left-align") {
+  #urlbar .urlbar-input,
+  .urlbar-input-container {
+    text-align: center !important;
+    position: relative;
+  }
 }
 
 /* Simple focus animation */
 #urlbar[focused="true"] {
-  transform: scale(1.02);
-  background-color: rgb(255 255 255 / 15%);
+  background-color: var(--zen-primary-color) !important;
   /* border: 1px solid rgb(255 255 255 / 30%); */
   box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-/* Clean hover effect */
-#urlbar:hover:not([focused="true"]) {
-  background-color: rgb(255 255 255 / 10%);
-  /* border: 1px solid rgb(255 255 255 / 20%); */
-}
+
 
 #urlbar-results,
 #PopupAutoCompleteRichResult,
 .autocomplete-richlistbox {
-  overflow-y: auto !important;
-  padding-right: 18px !important;
-  margin-right: -18px !important;
+  padding-right: 5px !important;
+  padding-left: 4px !important;
+  
 }
 
-.urlbarView-body-outer {
-  overflow-x: hidden !important;
-}
 
 /* Smooth dropdown appearance */
 #urlbar-results {
@@ -64,50 +46,40 @@
   /* border: 1px solid rgb(255 255 255 / 0.1); */
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 /* Simple suggestion hover */
 .urlbarView-row:hover {
-  background: rgb(255 255 255 / 10%);
+  background: var(--zen-primary-color) !important;
   transform: translateX(2px);
-}
-
-/* Clean button effects */
-.urlbar-icon:hover {
-  transform: scale(1.1);
-  background-color: rgb(255 255 255 / 10%);
   border-radius: var(--arc-border-radius, 12px) !important;
 }
 
-/* Search Result Hiding */
-#urlbar {
-  @media (-moz-pref("arc.urlbar.hide_results", "0")) {
-    &:not([usertyping], [searchmode]) > .urlbarView {
-      display: none !important;
-    }
-  }
+/* Clean button effects 
+.urlbar-icon:hover {
+  transition-duration: 1s !important;
+  transform: scale(1.25);
+  border-radius: var(--arc-border-radius, 12px) !important;
+}
+*/
 
-  #urlbar-results div.urlbarView-row[row-selectable][type="top_site"] {
-    @media (-moz-pref("arc.urlbar.hide_results", "0")),
-      (-moz-pref("arc.urlbar.hide_results", "1")) {
-      display: none !important;
-    }
-    @media (-moz-pref("arc.urlbar.hide_results", "2")) {
-      &:not([pinned]) {
-        display: none !important;
-      }
-    }
+/* Search Suggestions Hiding */
+@media (-moz-pref("arc-urlbar-hide-results")) {
+  #urlbar > .urlbar-input-container {
+    order: 1 !important;
   }
+    /* Hide urlbar results */
+  .urlbarView-row>.urlbarView-row-inner .urlbarView-type-icon {
+    margin: 0px !important;
+    position: absolute !important;
+    right: 15px !important;
+  }
+  /* urlbar search result */
+  .urlbarView-body-inner {
+    display: none !important;
+  }
+  .urlbarView-body-inner:has(.urlbarView-row[selected]) {
+    display: list-item !important;
+  } 
 }
 
 /* ------------------ URLBAR Styling ------------------ */
@@ -119,16 +91,11 @@
 
 @media not (-moz-pref("arcline.url.bar", 1)) {
   :root[zen-single-toolbar="true"] #urlbar:not([open]) {
-    height: 40px !important;
+    height: 39px !important;
   }
 
   #identity-icon-box {
     background: none !important;
-  }
-
-  /* Selected row highlight & favicon fix */
-  .urlbarView-row[selected] {
-    background-color: rgb(100 100 100 / 10%) !important;
   }
 
   .urlbarView-row-inner[selected] .urlbarView-favicon {
@@ -140,20 +107,22 @@
     border-radius: var(--arc-border-radius, 12px) !important;
   }
 
-  /* stretch animation */
-  @media (-moz-pref("arc-urlbar-animation", 1)) {
-    #urlbar[open] {
-      animation: stretch 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
+  
+  @media not (-moz-pref("arc-urlbar-animation", 0)) {
+    /* stretch animation */
+    @media (-moz-pref("arc-urlbar-animation", 1)) {
+      #urlbar[open] {
+        animation: stretch 0.25s ease-out forwards !important;
+      }
+    }
+
+    /* fade-in animation */
+    @media (-moz-pref("arc-urlbar-animation", 2)) {
+      #urlbar[open] {
+        animation: fade-in 0.25s ease-out !important;
+      }
     }
   }
-
-  /* fade-in animation */
-  @media (-moz-pref("arc-urlbar-animation", 2)) {
-    #urlbar[open] {
-      animation: fade-in 0.15s ease-in !important;
-    }
-  }
-
   @keyframes stretch {
     from {
       transform: scaleX(0);
@@ -167,17 +136,42 @@
   @keyframes fade-in {
     from {
       opacity: 0;
-      filter: blur(10px);
     }
 
     to {
       opacity: 1;
-      filter: none;
     }
   }
 }
 
+
 /* ------------------ URL Bar BG ------------------ */
+/* Blur Zoom Animation on opening URLBar */
+@media not (-moz-pref("arc.urlbar.background")) {
+  #browser:has(#urlbar[open]) .browserStack {
+    scale: 1.075 !important;
+    filter: blur(var(--arc-urlbar-blur, 25px))
+      saturate(var(--arc-urlbar-saturate, 1))
+      contrast(var(--arc-urlbar-contrast, 1)) !important;
+    opacity: 1 !important;
+  }
+}
+
+/* --- URL BAR HOVER & ACTIVE STATS --- */
+#urlbar .urlbar-background {
+  background-color: light-dark(rgba(0,0,0,0.05), rgba(255,255,255,0.05)) !important;
+}
+
+/* Trigger when the main URL bar is hovered */
+#urlbar:hover .urlbar-background {
+  background-color: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.1)) !important;
+}
+
+/* Trigger when the URL bar is focused or clicked */
+#urlbar[focused="true"] .urlbar-background,
+#urlbar:active .urlbar-background {
+  background-color: light-dark(rgba(0,0,0,0.125), rgba(255,255,255,0.125)) !important;
+}
 
 /* TRANSPARENCY */
 #urlbar[open] .urlbar-background {
@@ -210,6 +204,16 @@
     contrast(var(--arc-urlbar-contrast, 1)) !important;
 }
 
+/* URL Bar suggestions text color adjustments 
+.urlbarView-row {
+  &[selected] {
+    & *,
+    & .urlbarView-title-separator::before {
+      color: light-dark(rgb(0 0 0 / 100%), rgb(255 255 255 / 100%)) !important;
+    }
+  }
+}
+*/
 /* ARCLINE LIKE URLBAR */
 @media (-moz-pref("arcline.url.bar", 1)) {
   * {

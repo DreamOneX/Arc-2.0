@@ -18,88 +18,87 @@ tooltip {
 @media not (-moz-pref("arc-disable-tab-hover-animations")) {
   .tabbrowser-tab {
     transition:
-      box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-      transform 0.24s cubic-bezier(0.22, 1.5, 0.36, 1),
-      opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-      filter 0.2s ease !important;
-    box-shadow: none !important;
+      box-shadow 0.1s ease-out,
+      transform 0.1s ease-out !important;
+    box-shadow: 0 6px 12px -6px light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%)) !important;
+    /*box-shadow: none !important;*/
   }
 
   .tabbrowser-tab:hover {
-    transform: translateY(-2px) scale(1.04);
-    box-shadow: 0 4px 12px -4px rgb(30 40 80 / 9%);
-    z-index: 2;
+    transform: /*translateY(-1.25px)*/ scale(1.03);
+    z-index: 2 !important;
   }
 
   /* Fade inactive tabs with breathing effect */
   .tabbrowser-tab:not([selected]) {
-    opacity: 0.82;
-    filter: blur(0.2px);
-    animation: tab-breathe 4s ease-in-out infinite;
+    opacity: 0.99;
   }
-
-  @keyframes tab-breathe {
-    0%,
-    100% {
-      opacity: 0.82;
-    }
-
-    50% {
-      opacity: 0.75;
-    }
-  }
-
+  
   /* Enhanced tab opening animation */
   .tabbrowser-tab[fadein] {
-    animation: tab-bounce-in 0.34s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    animation: tab-bounce-in 0.25s ease-out;
   }
 
   @keyframes tab-bounce-in {
     0% {
       opacity: 0;
-      transform: scale(0.86) translateY(4px) rotateX(15deg);
+      transform: scale(0) translateY(0px) rotateX(0);
     }
 
-    60% {
-      opacity: 1;
-      transform: scale(1.09) translateY(-3px) rotateX(-5deg);
+    25% {
+      opacity: 0.25;
+      transform: scale(0.25) translateY(-0.25px);
+    }
+    
+    50% {
+      opacity: 0.5;
+      transform: scale(0.75) translateY(-0.75px);
+    }
+    
+    75% {
+      opacity: 0.75;
+      transform: scale(1.05) translateY(-1.05px);
     }
 
     100% {
       opacity: 1;
-      transform: scale(1) translateY(0) rotateX(0);
+      transform: scale(1) translateY(0);
     }
   }
 
   /* Enhanced tab closing animation */
   .tabbrowser-tab[closing] {
-    animation: tab-shrink-out 0.19s cubic-bezier(0.68, -0.6, 0.32, 1.6) forwards;
+    animation: tab-shrink-out 0.25s ease-out;
   }
 
   @keyframes tab-shrink-out {
     0% {
       opacity: 1;
-      transform: scale(1) rotateY(0deg);
-      max-width: 100%;
+      transform: scale(1);
+    }
+    
+    25% {
+      opacity: 0.75;
+      transform: scale(0.75);
     }
 
     50% {
-      opacity: 0.3;
-      transform: scale(0.9) rotateY(15deg);
+      opacity: 0.5;
+      transform: scale(0.5);
+    }
+    
+    75% {
+      opacity: 0.25;
+      transform: scale(0.25);
     }
 
     100% {
       opacity: 0;
-      transform: scale(0.7) rotateY(30deg);
-      max-width: 0;
+      transform: scale(0);
     }
   }
 
-  /* Pinned tab special pulse animation */
-  .tabbrowser-tab[pinned="true"] {
-    animation: pinned-pulse 3s ease-in-out infinite;
-  }
-
+ 
   @keyframes pinned-pulse {
     0%,
     100% {
@@ -149,7 +148,7 @@ tooltip {
   }
 }
 
-/* NAVIGATION BUTTON ANIMATIONS */
+/* NAVIGATION BUTTON ANIMATIONS 
 
 #back-button {
   transition:
@@ -168,8 +167,8 @@ tooltip {
   transform: translateX(-1px) scale(1.04);
   transition-duration: 0.1s;
 }
-
-/* Forward button without trail effect */
+*/
+/* Forward button without trail effect 
 #forward-button {
   transition:
     transform 0.22s cubic-bezier(0.68, -0.6, 0.32, 1.6),
@@ -187,8 +186,8 @@ tooltip {
   transform: translateX(1px) scale(1.04);
   transition-duration: 0.1s;
 }
-
-/* Reload button with enhanced spin and pulse */
+*/
+/* Reload button with enhanced spin and pulse 
 #reload-button {
   transition:
     transform 0.25s cubic-bezier(0.68, -0.6, 0.32, 1.6),
@@ -228,8 +227,8 @@ tooltip {
     transform: rotate(360deg);
   }
 }
-
-/* Menu button animation */
+*/
+/* Menu button animation 
 @keyframes menu-button-animation {
   0% {
     transform: rotate(0deg) scale(1);
@@ -259,62 +258,23 @@ tooltip {
     transform: rotate(0deg) scale(1.2);
   }
 }
-
-#PanelUI-menu-button:hover {
-  animation: menu-button-animation 0.6s cubic-bezier(0.2, 0.49, 0.78, 1.01)
-    forwards;
-}
-
-/* Extension button animation */
-@keyframes bounce-extension-button {
-  0% {
-    transform: scale(1);
-  }
-
-  40% {
-    transform: scale(1.25);
-  }
-
-  60% {
-    transform: scale(1.15);
-  }
-
-  80% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-#unified-extensions-button:hover {
-  animation: bounce-extension-button 0.6s cubic-bezier(0.25, 1.3, 0.5, 1)
-    forwards;
-}
+*/
 
 /* === URL BAR & SEARCH BAR ENHANCEMENTS === */
 #urlbar {
   transition:
-    transform 0.2s cubic-bezier(0.22, 1.5, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.2s ease !important;
-  position: relative;
+    transform 0.5s ease-out,
+    box-shadow 0.5s ease-out
 }
 
 #urlbar:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px -4px rgb(30 40 80 / 10%);
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 12px -12px light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 10%));
+  transition-duration: 0.5s !important;
 }
 
-#urlbar:focus-within,
-#urlbar[focused="true"] {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 0 6px 16px -6px rgb(50 70 160 / 15%);
-  transition-duration: 0.15s;
-}
 
-/* Typing indicator animation */
+/* Typing indicator animation 
 #urlbar[focused="true"]::after {
   content: "";
   position: absolute;
@@ -342,6 +302,7 @@ tooltip {
     background-position: 200% 50%;
   }
 }
+*/
 
 /* === CONTEXT MENU ENHANCEMENTS === */
 /* Menu Animations */
@@ -356,10 +317,10 @@ tooltip {
     toolbarbutton.subviewbutton {
       .menu-text,
       .toolbarbutton-text {
-        font-size: 0.93em !important;
+        font-size: 1em !important;
         padding: 2px 5px !important;
         opacity: 1 !important;
-        transition: all 0.25s ease-in-out !important;
+        transition: all 0.25s ease-out !important;
       }
 
       &:hover > .menu-text,
@@ -372,20 +333,20 @@ tooltip {
     &:has(menu[open="true"]) {
       & > menuitem,
       menu:not([open="true"]) {
-        opacity: 0.3 !important;
+        opacity: 0.25 !important;
       }
     }
   }
 
   menupopup {
-    animation: context-menu-slide-in 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+    animation: context-menu-slide-in 0.25s ease-out !important;
     transform-origin: top left;
   }
 
   @keyframes context-menu-slide-in {
     0% {
       opacity: 0;
-      transform: scale(0.92) translateY(-4px);
+      transform: scale(0.92) translateX(-5px);
     }
 
     100% {
@@ -397,34 +358,34 @@ tooltip {
   /* Context menu items with stagger delay */
   menuitem {
     transition:
-      background-color 0.12s ease,
-      transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
-      opacity 0.12s ease !important;
-    animation: menu-item-slide-in 0.2s ease-out backwards;
+      background-color 0.25s ease-out,
+      transform 0.25s ease-out,
+      opacity 0.25s ease-out !important;
+    animation: menu-item-slide-in 0.25s ease-out backwards;
   }
 
   menuitem:nth-child(1) {
-    animation-delay: 0.02s;
+    animation-delay: 0.03s;
   }
 
   menuitem:nth-child(2) {
-    animation-delay: 0.04s;
-  }
-
-  menuitem:nth-child(3) {
     animation-delay: 0.06s;
   }
 
+  menuitem:nth-child(3) {
+    animation-delay: 0.09s;
+  }
+
   menuitem:nth-child(4) {
-    animation-delay: 0.08s;
+    animation-delay: 0.12s;
   }
 
   menuitem:nth-child(5) {
-    animation-delay: 0.1s;
+    animation-delay: 0.15s;
   }
 
   menuitem:nth-child(n + 6) {
-    animation-delay: 0.12s;
+    animation-delay: 0.18s;
   }
 
   @keyframes menu-item-slide-in {
@@ -439,6 +400,7 @@ tooltip {
     }
   }
 }
+
 
 /* === NOTIFICATION ANIMATIONS === */
 /* Download notification */
@@ -641,21 +603,35 @@ menuitem *,
 
 /* --------------------- Tab Switch Animation --------------------- */
 
-#tabbrowser-tabpanels > hbox:not(.zen-glance-background, [zen-split="true"]) {
+#tabbrowser-tabpanels
+  > hbox:not(
+    [zen-split="true"],
+    .zen-glance-background,
+    :has(.zen-glance-background)
+  ) {
   transition: all 0.2s ease !important;
   scale: 0.975 !important;
   opacity: 1;
 }
 
 #tabbrowser-tabpanels
-  > hbox.deck-selected:not(.zen-glance-background, [zen-split="true"]) {
+  > hbox.deck-selected:not(
+    [zen-split="true"],
+    .zen-glance-background,
+    :has(.zen-glance-background)
+  ) {
   scale: 1 !important;
   opacity: 1 !important;
   filter: none !important;
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 2)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background, [zen-split="true"]) {
+  #tabbrowser-tabpanels
+    > hbox:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     transition:
       all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
       filter 0.2s ease-out !important;
@@ -665,7 +641,11 @@ menuitem *,
   }
 
   #tabbrowser-tabpanels
-    > hbox.deck-selected:not(.zen-glance-background, [zen-split="true"]) {
+    > hbox.deck-selected:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
@@ -673,7 +653,12 @@ menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 3)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background, [zen-split="true"]) {
+  #tabbrowser-tabpanels
+    > hbox:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     transition: all 0.24s cubic-bezier(0.3, 0.6, 0.3, 1.2) !important;
     scale: 0.98 !important;
     transform: translateY(10px);
@@ -681,7 +666,11 @@ menuitem *,
   }
 
   #tabbrowser-tabpanels
-    > hbox.deck-selected:not(.zen-glance-background, [zen-split="true"]) {
+    > hbox.deck-selected:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     scale: 1 !important;
     transform: none;
     opacity: 1 !important;
@@ -690,7 +679,12 @@ menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 4)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background, [zen-split="true"]) {
+  #tabbrowser-tabpanels
+    > hbox:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     transition: all 0.2s ease;
     opacity: 0 !important;
     scale: 0.975 !important;
@@ -699,16 +693,24 @@ menuitem *,
   }
 
   #tabbrowser-tabpanels
-    > hbox.deck-selected:not(.zen-glance-background, [zen-split="true"]) {
+    > hbox.deck-selected:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     opacity: 1 !important;
     pointer-events: auto !important;
-    position: absolute !important;
     z-index: 1;
   }
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 5)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background, [zen-split]) {
+  #tabbrowser-tabpanels
+    > hbox:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     transform: scale(1.05);
     filter: blur(15px);
     opacity: 1;
@@ -720,7 +722,11 @@ menuitem *,
   }
 
   #tabbrowser-tabpanels
-    > hbox.deck-selected:not(.zen-glance-background, [zen-split]) {
+    > hbox.deck-selected:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     transform: scale(1);
     opacity: 1 !important;
     filter: none !important;
@@ -728,7 +734,12 @@ menuitem *,
 }
 
 @media (-moz-pref("arc-tab-switch-animation", 0)) {
-  #tabbrowser-tabpanels > hbox:not(.zen-glance-background, [zen-split="true"]) {
+  #tabbrowser-tabpanels
+    > hbox:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     transition: none !important;
     scale: 1 !important;
     opacity: 1 !important;
@@ -736,7 +747,11 @@ menuitem *,
   }
 
   #tabbrowser-tabpanels
-    > hbox.deck-selected:not(.zen-glance-background, [zen-split="true"]) {
+    > hbox.deck-selected:not(
+      [zen-split="true"],
+      .zen-glance-background,
+      :has(.zen-glance-background)
+    ) {
     scale: 1 !important;
     opacity: 1 !important;
     filter: none !important;
@@ -804,16 +819,19 @@ tabpanels .browserStack browser {
 
 /* ctrl tab visuals and animations */
 #ctrlTab-panel {
-  --panel-background: rgb(0 0 0 / 90%) !important;
+  --panel-background: light-dark(
+    rgb(255 255 255 / 75%),
+    rgb(0 0 0 / 75%)
+  ) !important;
 
-  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important;
-  border-radius: 13px;
+  /*  transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.1) 0.2s !important; */
+  border-radius: var(--arc-border-radius, 12px);
   scale: 0.7;
 }
 
 #ctrlTab-panel:has(.ctrlTab-preview:not([hidden="true"])) {
   scale: 0.7 !important;
-  border-radius: 13px;
+  border-radius: var(--arc-border-radius, 12px) !important;
 }
 
 slot:nth-child(1) {
@@ -826,7 +844,7 @@ slot:nth-child(1) {
   transition: all 0.2s ease-in-out;
 
   .ctrlTab-canvas {
-    border-radius: 1em !important;
+    border-radius: var(--arc-border-radius, 12px) !important;
     overflow: hidden;
 
     img {
@@ -854,8 +872,8 @@ slot:nth-child(1) {
   outline: none !important;
   /* border: none !important;   */
   background-color: var(--sidebar-background-color) !important;
-  border-radius: 1.5em !important;
-  scale: 1.03 !important;
+  border-radius: var(--arc-border-radius, 12px) !important;
+  /* scale: 1.03 !important; */
 
   .ctrlTab-favicon-container {
     image {
@@ -907,7 +925,18 @@ slot:nth-child(1) {
 }
 */
 
+/*----------------------SIDEBAR MEDIA PLAYER--------------------------*/
 /* Media Player */
+.zen-media-mute-button,
+.zen-media-focus-button,
+.zen-media-nexttrack-button,
+.zen-media-playpause-button,
+.zen-media-previoustrack-button,
+.zen-media-close-button {
+  border-radius: var(--arc-border-radius, 12px) !important;
+  overflow: hidden;
+}
+
 @media not (-moz-pref("arc-disable-media-player-styles")) {
   @media (-moz-pref("arc.media-controls-toolbar-bottom")) {
     #zen-media-controls-toolbar {
@@ -915,9 +944,28 @@ slot:nth-child(1) {
     }
 
     #zen-media-controls-toolbar:hover + #zen-sidebar-foot-buttons {
-      transform: translateY(-35px);
+      transform: translateY(-25px);
       transition: transform 0.2s ease-in-out !important;
     }
+  }
+
+  @media not (-moz-pref("arc.media-controls-toolbar-bottom")){
+    #zen-media-controls-toolbar {
+      &:hover {
+        height: 120px !important;
+        margin-top: -10px !important;
+      }
+    }
+  }
+
+  /* Smooth Anim for the hover Music controls */
+  #zen-media-controls-toolbar{
+    transition:height 0.25s ease-in-out !important;
+  }
+  
+  /* Non Aligned Logo Fix*/
+  .zen-media-focus-button{
+    align-self: auto !important;
   }
 
   /* Media player expanded layout */
@@ -929,17 +977,17 @@ slot:nth-child(1) {
       padding-right: 6px;
       pointer-events: none;
       transition:
-        max-height 0.2s ease,
-        opacity 0.2s ease,
-        transform 0.2s ease,
-        padding 0.2s ease;
+        max-height 0.5s ease,
+        opacity 0.5s ease,
+        transform 0.5s ease,
+        padding 0.5s ease;
     }
   }
 
   /* Media buttons hover effect */
-  #zen-media-buttons-hbox > toolbarbutton {
+  .zen-media-buttons-hbox > toolbarbutton {
     opacity: 0 !important;
-    transition: opacity 0.4s ease-in-out !important;
+    transition: opacity 0.25s ease-in-out !important;
 
     &:hover {
       opacity: 1 !important;
@@ -948,25 +996,29 @@ slot:nth-child(1) {
 
   /* Media controls hover expansion */
   #zen-media-controls-toolbar {
-    #zen-media-controls-hbox {
+    .zen-media-controls-hbox {
       order: 0 !important;
       height: 0 !important;
-      overflow: hidden !important;
+      opacity: 0;
+      transition:all 0.25s !important;
+      pointer-events: none;
+/*       overflow: hidden !important; */
     }
 
     &:hover {
-      #zen-media-controls-hbox {
+      .zen-media-controls-hbox {
         height: fit-content !important;
         opacity: 1 !important;
+        pointer-events: all;
       }
     }
   }
 
-  #zen-media-main-vbox > vbox {
+  .zen-media-main-vbox > vbox {
     order: 1 !important;
   }
 
-  /* Media controls glow effect */
+    /* Media controls glow effect */
   @media not (-moz-pref("arc-disable-player-glow-effect")) {
     #zen-media-controls-toolbar::after {
       position: absolute;
@@ -974,84 +1026,89 @@ slot:nth-child(1) {
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: -1;
+      z-index: -1;  
       height: 100%;
       width: 100%;
       transform: scale(0.9) translateZ(0);
-      filter: blur(15px);
+      filter: blur(var(--arc-mediaplayer-blur, 20px));
       opacity: 0 !important;
-      transition: all 0.3s ease-in-out !important;
-      background: linear-gradient(
+      transition: all 0.25s ease-in-out !important;
+/*       background: linear-gradient( 
         135deg,
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
-        var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 25%, white),
-        var(--zen-primary-color),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 50%, white),
-        color-mix(in srgb, var(--zen-primary-color) 25%, white),
-        var(--zen-primary-color),
-        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%)),
-        color-mix(in srgb, var(--zen-primary-color) 75%, rgb(0 0 0 / 20%)),
-        color-mix(in srgb, var(--zen-primary-color) 50%, rgb(0 0 0 / 20%)),
-        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)),
-        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)),
-        light-dark(#fffd, rgb(0 0 0 / 50%))
-      );
-      background-size: 200% 200%;
+        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
+        var(--zen-primary-color), 
+        color-mix(in srgb, var(--zen-primary-color) 25%, white), 
+        var(--zen-primary-color), 
+        light-dark(#fffd, rgb(0 0 0 / 50%)), 
+        light-dark(#fffd, rgb(0 0 0 / 50%)), 
+        var(--zen-primary-color), 
+        color-mix(in srgb, var(--zen-primary-color) 50%, white), 
+        color-mix(in srgb, var(--zen-primary-color) 25%, white), 
+        var(--zen-primary-color), 
+        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)), 
+        light-dark(#fffd, rgb(0 0 0 / 50%)), 
+        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
+        light-dark(#fffd, rgb(0 0 0 / 50%)), 
+        color-mix(in srgb, var(--zen-primary-color) 75%, rgb(0 0 0 / 20%)), 
+        color-mix(in srgb, var(--zen-primary-color) 50%, rgb(0 0 0 / 20%)), 
+        color-mix(in srgb, var(--zen-primary-color) 25%, rgb(0 0 0 / 20%)), 
+        color-mix(in srgb, var(--zen-primary-color) 10%, rgb(0 0 0 / 20%)), 
+        light-dark(#fffd, rgb(0 0 0 / 50%)) 
+      ); */
+      
+      background-image: repeating-linear-gradient(
+        132deg,
+        rgba(0, 0, 0, 0) 20px,
+        rgba(0, 0, 0, 0) 55px,
+        var(--zen-primary-color) 60px,
+        var(--zen-primary-color) 90px,
+        light-dark(rgba(0, 0, 0, 1), rgba(255,255,255,1)) 52.5px,
+        light-dark(rgba(0, 0, 0, 1), rgba(255,255,255,1)) 105px,
+        var(--zen-primary-color) 100px,
+        var(--zen-primary-color) 150px,
+        rgba(0, 0, 0, 0) 130px,
+        rgba(0, 0, 0, 0) 200px
+        );
+      
+      background-size: 200% 100%;
     }
   }
 
   /* Background Line Fix */
-  #zen-media-info-vbox::before {
+  .zen-media-info-vbox::before {
     display: none;
   }
-
-  @media (-moz-pref("arc.transparency-media")) {
-    :root {
-      --arc-media-color: light-dark(#fffd, #000d);
-    }
-  }
-
-  @media not (-moz-pref("arc.transparency-media")) {
-    :root {
-      --arc-media-color: light-dark(
-        rgb(255 255 255 / 10%),
-        rgb(0 0 0 / 20%)
-      ) !important;
-    }
-  }
+  
 
   #zen-media-controls-toolbar toolbaritem {
-    background-color: var(--arc-media-color) !important;
+    background-color: var(--arc-mediaplayer-opacity, light-dark(
+      rgb(255 255 255 / 20%),
+      rgb(0 0 0 / 20%)
+    )) !important;
   }
 
   /* Playing media styling */
-  #zen-media-controls-toolbar.playing {
-    padding: 16px 24px;
+  #zen-media-controls-toolbar:has(.zen-media-card.playing) {
+    padding: 18px 24px;
     position: relative;
-    border-radius: 8px;
+    border-radius: var(--arc-border-radius, 12px) !important;
     box-shadow: 0 0 0 1px rgb(0 0 0 / 1%);
 
     &::after {
       opacity: 1 !important;
-      animation: animate-glow 5s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+      animation: animate-glow 4.25s cubic-bezier(0.1, 0.7, 0.5, 0.1) infinite;
+      /* animation: animate-glow 3s cubic-bezier(.04,.32,.5,.28) infinite; */
     }
 
-    &:hover::after {
-      height: 150%;
-    }
+    /* &:hover::after {
+      height: 100%;
+    } */
   }
 
   /* Glow animation keyframes */
   @keyframes animate-glow {
     0% {
-      background-position: 0% 20%;
+      background-position: 0% 50%;
     }
 
     100% {
@@ -1063,3 +1120,4 @@ slot:nth-child(1) {
     margin-bottom: 5px !important;
   }
 }
+
